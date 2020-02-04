@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="title_activity_statistic">StatisticActivity</string>
+    <string name="views_category_title">Views %1$d</string>
+    <string name="likes_category_title">Likes %1$d</string>
+    <string name="category_more_label">more %1$d</string>
+    <string name="commentators_category_title">Commentators %1$d</string>
+    <string name="mentions_category_title">Mentions %1$d</string>
+    <string name="reposts_category_title">Reposts %1$d</string>
+    <string name="bookmarks_category_title">Bookmarks %1$d</string>
+</resources>

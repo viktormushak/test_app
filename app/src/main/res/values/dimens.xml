@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="statistic_item_margin">5dp</dimen>
+    <dimen name="statistic_item_padding">16dp</dimen>
+    <dimen name="statistic_item_icon_size">24dp</dimen>
+</resources>

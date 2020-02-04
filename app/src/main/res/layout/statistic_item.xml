@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/statistic_item_background"
+    android:layout_margin="@dimen/statistic_item_margin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <include layout="@layout/statistic_item_title"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
