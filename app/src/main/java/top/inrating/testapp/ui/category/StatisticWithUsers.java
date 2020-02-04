@@ -41,19 +41,21 @@ public class StatisticWithUsers implements Category {
 
     protected void onUsersDataLoaded(List<UserData> userDataList){
         this.userDataList = userDataList;
+        this.count = userDataList.size();
+        this.viewHolder.setTitle(titleStringResId, count);
         if (userDataList.size() > 4){
             this.viewHolder.setMoreLabel(userDataList.size() - 4);
             this.viewHolder.setMoreLabelOnClick(view -> {
-                showAllUsers();
+                showUsers();
                 view.setVisibility(View.INVISIBLE);
             });
             this.viewHolder.setAdapter(new UserCardAdapter(this.userDataList.subList(0, 4)));
         } else {
-            this.viewHolder.setAdapter(new UserCardAdapter(this.userDataList));
+            showUsers();
         }
     }
 
-    private void showAllUsers(){
+    private void showUsers(){
         this.viewHolder.setAdapter(new UserCardAdapter(this.userDataList));
     }
 
