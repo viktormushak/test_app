@@ -10,9 +10,8 @@ import java.util.List;
 
 import top.inrating.testapp.data.model.UserData;
 import top.inrating.testapp.ui.adapter.StatisticCategoryViewHolderFactory.StatisticWithUsersViewHolder;
-import top.inrating.testapp.ui.adapter.UserCardAdapter;
 
-public class StatisticWithUsers implements Category {
+public abstract class StatisticWithUsers implements Category {
 
     @StringRes
     private int titleStringResId;
@@ -43,23 +42,17 @@ public class StatisticWithUsers implements Category {
         this.userDataList = userDataList;
         this.count = userDataList.size();
         this.viewHolder.setTitle(titleStringResId, count);
+
+        List<UserData> users = userDataList.size() > 4 ? userDataList.subList(0, 4): userDataList;
         if (userDataList.size() > 4){
             this.viewHolder.setMoreLabel(userDataList.size() - 4);
-            this.viewHolder.setMoreLabelOnClick(view -> {
-                showUsers();
+            this.viewHolder.setMoreLabelOnClickListener(view -> {
                 view.setVisibility(View.INVISIBLE);
+                this.viewHolder.setUserDataList(this.userDataList);
             });
-            this.viewHolder.setAdapter(new UserCardAdapter(this.userDataList.subList(0, 4)));
-        } else {
-            showUsers();
         }
+        this.viewHolder.setUserDataList(users);
     }
 
-    private void showUsers(){
-        this.viewHolder.setAdapter(new UserCardAdapter(this.userDataList));
-    }
-
-    public void runUsersDataLoading(){
-
-    }
+    public abstract void runUsersDataLoading();
 }

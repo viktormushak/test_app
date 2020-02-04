@@ -12,14 +12,17 @@ import androidx.annotation.StringRes;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 import top.inrating.testapp.R;
+import top.inrating.testapp.data.model.UserData;
 import top.inrating.testapp.ui.category.Category;
 
 public class StatisticCategoryViewHolderFactory {
 
     public static class StatisticViewHolder extends RecyclerView.ViewHolder {
 
-        private Context context;
+        Context context;
 
         StatisticViewHolder(Context context, @NonNull View itemView) {
             super(itemView);
@@ -36,22 +39,10 @@ public class StatisticCategoryViewHolderFactory {
         }
     }
 
-    public static class StatisticWithUsersViewHolder extends RecyclerView.ViewHolder {
-
-        private Context context;
+    public static class StatisticWithUsersViewHolder extends StatisticViewHolder {
 
         StatisticWithUsersViewHolder(Context context, @NonNull View itemView) {
-            super(itemView);
-            this.context = context;
-        }
-
-        public void setIcon(int icon) {
-            ((ImageView) itemView.findViewById(R.id.category_icon)).setImageResource(icon);
-        }
-
-        public void setTitle(@StringRes int title, Object...objects) {
-            ((TextView) itemView.findViewById(R.id.category_title))
-                    .setText(context.getString(title, objects));
+            super(context, itemView);
         }
 
         public void setMoreLabel(int count) {
@@ -59,15 +50,14 @@ public class StatisticCategoryViewHolderFactory {
                     .setText(context.getString(R.string.category_more_label, count));
         }
 
-        public void setAdapter(RecyclerView.Adapter adapter) {
+        public void setUserDataList(List<UserData> userDataList) {
             RecyclerView recyclerView = itemView.findViewById(R.id.user_card_recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            recyclerView.setAdapter(adapter);
+            recyclerView.setAdapter(new UserCardAdapter(context, userDataList));
         }
 
-        public void setMoreLabelOnClick(View.OnClickListener clickListener) {
-            itemView.findViewById(R.id.category_more_label)
-                    .setOnClickListener(clickListener);
+        public void setMoreLabelOnClickListener(View.OnClickListener clickListener) {
+            itemView.findViewById(R.id.category_more_label).setOnClickListener(clickListener);
         }
     }
 
